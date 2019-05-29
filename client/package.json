@@ -2,6 +2,7 @@
   "name": "pics",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://zomg830.github.io/Giphy-App/",
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.18.0",

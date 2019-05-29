@@ -2,6 +2,7 @@
   "name": "mern",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://zomg830.github.io/Giphy-App/",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -22,6 +23,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "dotenv": "^8.0.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
