@@ -11,7 +11,7 @@ export default class Giphy extends Component {
   onSearchSubmit = async term => {
     const response = await giphy
       .get("/v1/gifs/search", {
-        params: { q: term, api_key: process.env.GIPHY_KEY }
+        params: { q: term, api_key: process.env.REACT_APP_GIPHY_KEY }
       })
       .catch(err => console.log(err));
     this.setState({ gifs: response.data.data, showResults: true });
