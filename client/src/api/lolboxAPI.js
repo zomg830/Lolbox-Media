@@ -7,13 +7,11 @@ export default {
   getUserLolbox: function(userId) {
     return axios.get("/api/users/" + userId);
   },
-  getLolboxById: function(id) {
-    return axios.get("/api/lolbox/" + id);
-  },
   deleteLolbox: function(id) {
     return axios.delete("/api/lolbox/" + id);
   },
-  saveLolbox: function(lolboxData) {
+  saveLolboxItem: function(lolboxData) {
+    console.log("lolboxData", lolboxData);
     return axios.post("/api/lolbox", lolboxData);
   },
   editLolbox: function(id, lolboxData) {

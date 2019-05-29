@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const lolboxSchema = new Schema({
-  name: { type: String, required: true },
+  id: { type: String },
+  description: { type: String },
+  userId: { type: String },
+  urls: { type: Map, of: String },
   date: { type: Date, default: Date.now }
 });
 

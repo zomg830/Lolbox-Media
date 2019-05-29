@@ -1,7 +1,28 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class MyBox extends Component {
+import { fetchLolbox } from "../actions";
+import LolboxList from "../components/LolboxList";
+
+class MyBox extends Component {
+  async componentDidMount() {
+    await this.props.fetchLolbox(this.props.userId);
+  }
+
   render() {
-    return <div>My Box</div>;
+    return !this.props.lolbox.userArr ? (
+      <div />
+    ) : (
+      <LolboxList lolbox={this.props.lolbox.userArr} />
+    );
   }
 }
+
+const mapStateToProps = state => {
+  return { userId: state.auth.userId, lolbox: state.lolbox };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchLolbox }
+)(MyBox);
