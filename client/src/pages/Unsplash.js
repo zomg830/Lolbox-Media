@@ -5,6 +5,8 @@ import SearchBar from "../components/SearchBar";
 import PicList from "../components/PicList";
 import BannerSegment from "../components/BannerSegment";
 
+const KEY = process.env.REACT_APP_UNSPLASH;
+
 export default class Unsplash extends Component {
   state = { pics: [], showResults: false, term: null, offsetPage: 0 };
 
@@ -15,7 +17,7 @@ export default class Unsplash extends Component {
           query: term,
           page: page,
           per_page: 20,
-          client_id: process.env.REACT_APP_UNSPLASH || process.env.UNSPLASH
+          client_id: KEY
         }
       })
       .catch(err => console.log(err));

@@ -5,6 +5,9 @@ import SearchBar from "../components/SearchBar";
 import GifList from "../components/GifList";
 import BannerSegment from "../components/BannerSegment";
 
+const KEY = process.env.REACT_APP_GIPHY_KEY;
+console.log(process.env);
+
 export default class Giphy extends Component {
   state = { gifs: [], showResults: false };
 
@@ -13,7 +16,7 @@ export default class Giphy extends Component {
       .get("/v1/gifs/search", {
         params: {
           q: term,
-          api_key: process.env.REACT_APP_GIPHY_KEY || process.env.GIPHY_KEY
+          api_key: KEY
         }
       })
       .catch(err => console.log(err));
