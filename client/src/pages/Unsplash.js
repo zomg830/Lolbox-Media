@@ -15,7 +15,7 @@ export default class Unsplash extends Component {
           query: term,
           page: page,
           per_page: 20,
-          client_id: process.env.REACT_APP_UNSPLASH
+          client_id: process.env.UNSPLASH
         }
       })
       .catch(err => console.log(err));
