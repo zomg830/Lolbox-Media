@@ -10,9 +10,7 @@ class LolboxCard extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.itemRef);
     this.itemRef.current.addEventListener("load", this.setSpans);
-    console.log(this.props.item);
   }
 
   setSpans = () => {

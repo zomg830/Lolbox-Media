@@ -5,8 +5,12 @@ import { fetchLolbox } from "../actions";
 import LolboxList from "../components/LolboxList";
 
 class MyBox extends Component {
-  async componentDidMount() {
-    await this.props.fetchLolbox(this.props.userId);
+  state = { stopUpdate: false };
+
+  async componentDidUpdate(prevProps) {
+    if (prevProps.userId !== this.props.userId) {
+      await this.props.fetchLolbox(this.props.userId);
+    }
   }
 
   render() {

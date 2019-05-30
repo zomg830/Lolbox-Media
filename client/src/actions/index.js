@@ -22,7 +22,7 @@ export const saveLolboxItem = lolboxData => async (dispatch, getState) => {
 };
 
 export const fetchLolbox = userId => async dispatch => {
-  const response = await API.getLolbox(userId);
+  const response = await API.getUserLolbox(userId);
 
   dispatch({ type: FETCH_LOLBOX, payload: response.data });
 };
