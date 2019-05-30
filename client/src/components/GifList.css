@@ -1,19 +1,80 @@
 .gif-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 0 10px;
   justify-items: center;
   grid-auto-rows: 10px;
 }
 
 .gif-list img {
-  width: 250px;
+  width: 300px;
+}
+
+.gif:hover {
+  cursor: pointer;
 }
 
 .placeholder {
   background-color: #9a00a8;
 }
 
-img:hover {
+.fadeOut {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.fadeIn {
+  opacity: 1;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.save-icon {
+  position: absolute;
+  top: 2%;
+  right: 0%;
+  width: 1.2em;
+  background-color: rgba(165, 55, 253, 1);
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+.save-icon:hover {
+  background-color: rgba(165, 55, 253, 0);
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.save-icon:active {
+  background-color: rgb(249, 253, 6);
+}
+
+.delete-icon {
+  position: absolute;
+  top: 2%;
+  right: 0%;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  background-color: rgb(255, 0, 0);
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }

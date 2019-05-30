@@ -1,4 +1,10 @@
-import { SIGN_IN, SIGN_OUT, SAVE_ITEM, FETCH_LOLBOX } from "./types";
+import {
+  SIGN_IN,
+  SIGN_OUT,
+  SAVE_ITEM,
+  FETCH_LOLBOX,
+  DELETE_ITEM
+} from "./types";
 import API from "../api/lolboxAPI";
 
 export const signIn = userId => {
@@ -25,4 +31,10 @@ export const fetchLolbox = userId => async dispatch => {
   const response = await API.getUserLolbox(userId);
 
   dispatch({ type: FETCH_LOLBOX, payload: response.data });
+};
+
+export const deleteLolboxItem = id => async dispatch => {
+  await API.deleteLolboxItem(id);
+
+  dispatch({ type: DELETE_ITEM, payload: id });
 };

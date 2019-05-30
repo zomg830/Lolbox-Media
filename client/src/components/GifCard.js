@@ -47,7 +47,10 @@ class GifCard extends React.Component {
 
     return (
       <div
-        style={{ gridRowEnd: `span ${this.state.spans}`, position: "relative" }}
+        style={{
+          gridRowEnd: `span ${this.state.spans}`,
+          position: "relative"
+        }}
       >
         <img
           ref={this.gifRef}
@@ -57,18 +60,10 @@ class GifCard extends React.Component {
           data-animate={gif.images.fixed_width.url}
           data-still={gif.images.fixed_width_still.url}
           onClick={this.handleClick}
+          className="gif"
         />
         <i
-          className="ui inverted save outline large icon"
-          style={{
-            position: "absolute",
-            top: "2%",
-            right: "0%",
-            width: "1.2em",
-            backgroundColor: "rgba(165, 55, 253, 1)",
-            borderRadius: "4px",
-            cursor: "pointer"
-          }}
+          className="ui inverted save outline large icon save-icon"
           onClick={() => {
             this.handleSave(this.props.gif);
           }}

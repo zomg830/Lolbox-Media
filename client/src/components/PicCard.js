@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import "./GifList.css";
 import { saveLolboxItem } from "../actions";
 
 class PicCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { spans: 0, loadedClass: "ui loader" };
+    this.state = { spans: 0, visible: false };
 
     this.picRef = React.createRef();
   }
@@ -25,8 +26,7 @@ class PicCard extends React.Component {
   };
 
   handleImageLoaded = () => {
-    console.log("image loaded");
-    this.setState({ loadedClass: null });
+    this.setState({ visible: true });
   };
 
   handleSave = ({ id, description, urls, alt_description }) => {
@@ -43,7 +43,7 @@ class PicCard extends React.Component {
     return (
       <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
         <div
-          className={this.state.loadedClass}
+          className={this.state.visible ? "fadeIn" : "fadeOut"}
           style={{ position: "relative" }}
         >
           <img
@@ -53,16 +53,7 @@ class PicCard extends React.Component {
             src={pic.urls.regular}
           />
           <i
-            className="ui inverted save outline large icon"
-            style={{
-              position: "absolute",
-              top: "2%",
-              right: "0%",
-              width: "1.2em",
-              backgroundColor: "rgba(165, 55, 253, 1)",
-              borderRadius: "4px",
-              cursor: "pointer"
-            }}
+            className="ui inverted save outline large icon save-icon"
             onClick={() => {
               this.handleSave(this.props.pic);
             }}

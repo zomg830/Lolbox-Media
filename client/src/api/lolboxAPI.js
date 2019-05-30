@@ -7,7 +7,7 @@ export default {
   getUserLolbox: function(userId) {
     return axios.get("/api/users/" + userId);
   },
-  deleteLolbox: function(id) {
+  deleteLolboxItem: function(id) {
     return axios.delete("/api/lolbox/" + id);
   },
   saveLolboxItem: function(lolboxData) {
