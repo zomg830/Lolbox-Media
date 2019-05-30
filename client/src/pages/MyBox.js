@@ -5,8 +5,6 @@ import { fetchLolbox } from "../actions";
 import LolboxList from "../components/LolboxList";
 
 class MyBox extends Component {
-  state = { stopUpdate: false };
-
   async componentDidUpdate(prevProps) {
     if (prevProps.userId !== this.props.userId) {
       await this.props.fetchLolbox(this.props.userId);
