@@ -26,13 +26,12 @@ class LolboxCard extends React.Component {
   render() {
     const item = this.props.item;
 
+    const displayUrl = item.urls ? item.urls.regular : item.url;
+    const displayAlt = item.description ? item.description : item.title;
+
     return (
       <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        <img
-          ref={this.itemRef}
-          alt={item.description}
-          src={item.urls.regular}
-        />
+        <img ref={this.itemRef} alt={displayAlt} src={displayUrl} />
       </div>
     );
   }

@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { saveLolboxItem } from "../actions";
 
 class GifCard extends React.Component {
   constructor(props) {
@@ -23,6 +26,14 @@ class GifCard extends React.Component {
     }
   };
 
+  handleSave = gif => {
+    this.props.saveLolboxItem({
+      id: gif.id,
+      title: gif.title,
+      url: gif.images.original.url
+    });
+  };
+
   setSpans = () => {
     const height = this.gifRef.current.clientHeight;
 
@@ -35,7 +46,9 @@ class GifCard extends React.Component {
     const gif = this.props.gif;
 
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
+      <div
+        style={{ gridRowEnd: `span ${this.state.spans}`, position: "relative" }}
+      >
         <img
           ref={this.gifRef}
           alt={gif.title}
@@ -45,9 +58,27 @@ class GifCard extends React.Component {
           data-still={gif.images.fixed_width_still.url}
           onClick={this.handleClick}
         />
+        <i
+          className="ui inverted save outline large icon"
+          style={{
+            position: "absolute",
+            top: "2%",
+            right: "0%",
+            width: "1.2em",
+            backgroundColor: "rgba(165, 55, 253, 1)",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+          onClick={() => {
+            this.handleSave(this.props.gif);
+          }}
+        />
       </div>
     );
   }
 }
 
-export default GifCard;
+export default connect(
+  null,
+  { saveLolboxItem }
+)(GifCard);

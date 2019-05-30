@@ -6,7 +6,9 @@ const lolboxSchema = new Schema({
   description: { type: String },
   userId: { type: String },
   urls: { type: Map, of: String },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  title: { type: String },
+  url: { type: String }
 });
 
 const Lolbox = mongoose.model("Lolbox", lolboxSchema);

@@ -29,7 +29,7 @@ class PicCard extends React.Component {
     this.setState({ loadedClass: null });
   };
 
-  handleClick = ({ id, description, urls, alt_description }) => {
+  handleSave = ({ id, description, urls, alt_description }) => {
     this.props.saveLolboxItem({
       id,
       description,
@@ -42,13 +42,30 @@ class PicCard extends React.Component {
     const pic = this.props.pic;
     return (
       <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        <div className={this.state.loadedClass}>
+        <div
+          className={this.state.loadedClass}
+          style={{ position: "relative" }}
+        >
           <img
             ref={this.picRef}
             onLoad={this.handleImageLoaded}
-            onClick={() => this.handleClick(this.props.pic)}
             alt={pic.description}
             src={pic.urls.regular}
+          />
+          <i
+            className="ui inverted save outline large icon"
+            style={{
+              position: "absolute",
+              top: "2%",
+              right: "0%",
+              width: "1.2em",
+              backgroundColor: "rgba(165, 55, 253, 1)",
+              borderRadius: "4px",
+              cursor: "pointer"
+            }}
+            onClick={() => {
+              this.handleSave(this.props.pic);
+            }}
           />
         </div>
       </div>

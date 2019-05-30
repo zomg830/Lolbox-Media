@@ -20,6 +20,7 @@ export default class Giphy extends Component {
         }
       })
       .catch(err => console.log(err));
+    console.log(response.data.data);
     this.setState({ gifs: response.data.data, showResults: true });
   };
 
