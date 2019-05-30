@@ -11,12 +11,13 @@ export default class Giphy extends Component {
   state = { gifs: [], showResults: false, term: null, offset: 0 };
 
   onSearchSubmit = async term => {
+    let offset = this.state.term === term ? this.state.offset : 0;
     const response = await giphy
       .get("/v1/gifs/search", {
         params: {
           q: term,
           api_key: KEY,
-          offset: this.state.offset
+          offset: offset
         }
       })
       .catch(err => console.log(err));
@@ -24,7 +25,7 @@ export default class Giphy extends Component {
       this.state.term === term
         ? [...this.state.gifs, ...response.data.data]
         : response.data.data;
-    let offset = this.state.offset + 25;
+    offset = this.state.offset + 25;
     this.setState({
       gifs: gifItems,
       showResults: true,
