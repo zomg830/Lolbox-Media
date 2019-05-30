@@ -6,22 +6,31 @@ import GifList from "../components/GifList";
 import BannerSegment from "../components/BannerSegment";
 
 const KEY = process.env.REACT_APP_GIPHY_KEY;
-console.log(process.env);
 
 export default class Giphy extends Component {
-  state = { gifs: [], showResults: false };
+  state = { gifs: [], showResults: false, term: null, offset: 0 };
 
   onSearchSubmit = async term => {
     const response = await giphy
       .get("/v1/gifs/search", {
         params: {
           q: term,
-          api_key: KEY
+          api_key: KEY,
+          offset: this.state.offset
         }
       })
       .catch(err => console.log(err));
-    console.log(response.data.data);
-    this.setState({ gifs: response.data.data, showResults: true });
+    const gifItems =
+      this.state.term === term
+        ? [...this.state.gifs, ...response.data.data]
+        : response.data.data;
+    let offset = this.state.offset + 25;
+    this.setState({
+      gifs: gifItems,
+      showResults: true,
+      term: term,
+      offset: offset
+    });
   };
 
   render() {
@@ -29,7 +38,20 @@ export default class Giphy extends Component {
       <div>
         <BannerSegment type="GIF" />
         <SearchBar onSubmit={this.onSearchSubmit} type="GIF" />
-        {this.state.showResults ? <GifList gifs={this.state.gifs} /> : null}
+        {this.state.showResults ? (
+          <div>
+            <GifList gifs={this.state.gifs} />
+            <button
+              className="ui gray button"
+              style={{ display: "flex", margin: "auto" }}
+              onClick={() =>
+                this.onSearchSubmit(this.state.term, this.state.offsetPage)
+              }
+            >
+              Show More
+            </button>
+          </div>
+        ) : null}
       </div>
     );
   }
