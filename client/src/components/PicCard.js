@@ -8,7 +8,7 @@ class PicCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { spans: 0, visible: false };
+    this.state = { spans: 0, visible: false, previouslySaved: false };
 
     this.picRef = React.createRef();
   }
@@ -30,35 +30,47 @@ class PicCard extends React.Component {
   };
 
   handleSave = ({ id, description, urls, alt_description }) => {
-    this.props.saveLolboxItem({
-      id,
-      description,
-      urls,
-      alt_description
-    });
+    if (!this.state.previouslySaved) {
+      this.props.saveLolboxItem({
+        id,
+        description,
+        urls,
+        alt_description
+      });
+      this.setState({ previouslySaved: true });
+    }
   };
 
-  render() {
-    const pic = this.props.pic;
+  renderImg({ pic }) {
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        <div
-          className={this.state.visible ? "fadeIn" : "fadeOut"}
-          style={{ position: "relative" }}
-        >
-          <img
-            ref={this.picRef}
-            onLoad={this.handleImageLoaded}
-            alt={pic.description}
-            src={pic.urls.regular}
-          />
+      <div
+        className={this.state.visible ? "fadeIn" : "fadeOut"}
+        style={{ position: "relative" }}
+      >
+        <img
+          ref={this.picRef}
+          onLoad={this.handleImageLoaded}
+          alt={pic.description}
+          src={pic.urls.regular}
+        />
+        {!this.state.previouslySaved ? (
           <i
             className="ui inverted save outline large icon save-icon"
             onClick={() => {
               this.handleSave(this.props.pic);
             }}
           />
-        </div>
+        ) : (
+          <i className="ui inverted check square large icon check-icon" />
+        )}
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
+        {this.renderImg(this.props)}
       </div>
     );
   }

@@ -11,7 +11,6 @@ export default {
     return axios.delete("/api/lolbox/" + id);
   },
   saveLolboxItem: function(lolboxData) {
-    console.log("lolboxData", lolboxData);
     return axios.post("/api/lolbox", lolboxData);
   },
   editLolbox: function(id, lolboxData) {

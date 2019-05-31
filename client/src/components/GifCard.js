@@ -7,7 +7,7 @@ class GifCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { spans: 0, animated: false };
+    this.state = { spans: 0, animated: false, previouslySaved: false };
 
     this.gifRef = React.createRef();
   }
@@ -27,11 +27,14 @@ class GifCard extends React.Component {
   };
 
   handleSave = gif => {
-    this.props.saveLolboxItem({
-      id: gif.id,
-      title: gif.title,
-      url: gif.images.original.url
-    });
+    if (!this.state.previouslySaved) {
+      this.props.saveLolboxItem({
+        id: gif.id,
+        title: gif.title,
+        url: gif.images.original.url
+      });
+      this.setState({ previouslySaved: true });
+    }
   };
 
   setSpans = () => {

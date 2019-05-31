@@ -31,7 +31,22 @@ export default class Unsplash extends Component {
       term: term,
       offsetPage: page + 1
     });
+    console.log(this.state.pics);
   };
+
+  renderShowMoreButton() {
+    return this.state.pics.length !== 0 ? (
+      <button
+        className="ui gray button"
+        style={{ display: "flex", margin: "auto" }}
+        onClick={() =>
+          this.onSearchSubmit(this.state.term, this.state.offsetPage)
+        }
+      >
+        Show More
+      </button>
+    ) : null;
+  }
 
   render() {
     return (
@@ -41,15 +56,7 @@ export default class Unsplash extends Component {
         {this.state.showResults ? (
           <div>
             <PicList pics={this.state.pics} />
-            <button
-              className="ui gray button"
-              style={{ display: "flex", margin: "auto" }}
-              onClick={() =>
-                this.onSearchSubmit(this.state.term, this.state.offsetPage)
-              }
-            >
-              Show More
-            </button>
+            {this.renderShowMoreButton()}
           </div>
         ) : null}
       </div>

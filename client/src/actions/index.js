@@ -33,8 +33,8 @@ export const fetchLolbox = userId => async dispatch => {
   dispatch({ type: FETCH_LOLBOX, payload: response.data });
 };
 
-export const deleteLolboxItem = id => async dispatch => {
-  await API.deleteLolboxItem(id);
+export const deleteLolboxItem = id => dispatch => {
+  API.deleteLolboxItem(id);
 
   dispatch({ type: DELETE_ITEM, payload: id });
 };
