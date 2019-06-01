@@ -7,7 +7,12 @@ class GifCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { spans: 0, animated: false, previouslySaved: false };
+    this.state = {
+      spans: 0,
+      animated: false,
+      previouslySaved: false,
+      visible: false
+    };
 
     this.gifRef = React.createRef();
   }
@@ -15,6 +20,10 @@ class GifCard extends React.Component {
   componentDidMount() {
     this.gifRef.current.addEventListener("load", this.setSpans);
   }
+
+  handleImageLoaded = () => {
+    this.setState({ visible: true });
+  };
 
   handleClick = () => {
     if (this.state.animated === false) {
@@ -59,6 +68,7 @@ class GifCard extends React.Component {
           ref={this.gifRef}
           alt={gif.title}
           src={gif.images.fixed_width_still.url}
+          onLoad={this.handleImageLoaded}
           data-status="0"
           data-animate={gif.images.fixed_width.url}
           data-still={gif.images.fixed_width_still.url}
