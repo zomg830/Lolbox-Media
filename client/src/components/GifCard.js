@@ -65,12 +65,16 @@ class GifCard extends React.Component {
           onClick={this.handleClick}
           className="gif"
         />
-        <i
-          className="ui inverted save outline large icon save-icon"
-          onClick={() => {
-            this.handleSave(this.props.gif);
-          }}
-        />
+        {!this.state.previouslySaved ? (
+          <i
+            className="ui inverted save outline large icon save-icon"
+            onClick={() => {
+              this.handleSave(this.props.gif);
+            }}
+          />
+        ) : (
+          <i className="ui inverted check square large icon check-icon" />
+        )}
       </div>
     );
   }
