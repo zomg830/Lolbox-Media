@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchLolbox, deleteLolboxItem } from "../actions";
 
 import "./GifList.css";
+import { fetchLolbox, deleteLolboxItem } from "../actions";
 
 class LolboxCard extends React.Component {
   constructor(props) {
@@ -15,12 +15,13 @@ class LolboxCard extends React.Component {
 
   componentDidMount() {
     this.itemRef.current.addEventListener("load", this.setSpans);
+    window.addEventListener("resize", this.setSpans);
   }
 
   setSpans = () => {
-    const height = this.itemRef.current.clientHeight;
+    const height = this.itemRef.current.height;
 
-    const spans = Math.ceil(height / 10 + 1);
+    const spans = Math.ceil(height / 6 + 1);
 
     this.setState({ spans: spans, visible: true });
   };
@@ -41,7 +42,12 @@ class LolboxCard extends React.Component {
         style={{ gridRowEnd: `span ${this.state.spans}`, position: "relative" }}
         className={this.state.visible ? "fadeIn" : "fadeOut"}
       >
-        <img ref={this.itemRef} alt={displayAlt} src={displayUrl} />
+        <img
+          ref={this.itemRef}
+          alt={displayAlt}
+          src={displayUrl}
+          onLoad={this.handleImageLoaded}
+        />
         <i
           className="ui large inverted times circle outline icon delete-icon"
           onClick={() => {

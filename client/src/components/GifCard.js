@@ -19,10 +19,15 @@ class GifCard extends React.Component {
 
   componentDidMount() {
     this.gifRef.current.addEventListener("load", this.setSpans);
+    window.addEventListener("resize", this.setSpans);
   }
 
-  handleImageLoaded = () => {
-    this.setState({ visible: true });
+  setSpans = () => {
+    const height = this.gifRef.current.height;
+
+    const spans = Math.ceil(height / 6 + 1);
+
+    this.setState({ spans: spans, visible: true });
   };
 
   handleClick = () => {
@@ -47,9 +52,9 @@ class GifCard extends React.Component {
   };
 
   setSpans = () => {
-    const height = this.gifRef.current.clientHeight;
+    const height = this.gifRef.current.height;
 
-    const spans = Math.ceil(height / 10 + 1);
+    const spans = Math.ceil(height / 6 + 1);
 
     this.setState({ spans: spans });
   };
@@ -87,7 +92,6 @@ class GifCard extends React.Component {
           ref={this.gifRef}
           alt={gif.title}
           src={gif.images.fixed_width_still.url}
-          onLoad={this.handleImageLoaded}
           data-status="0"
           data-animate={gif.images.fixed_width.url}
           data-still={gif.images.fixed_width_still.url}

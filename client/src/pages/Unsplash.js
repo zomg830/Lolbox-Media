@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import _ from "lodash";
 
 import unsplash from "../api/unsplash";
 import SearchBar from "../components/SearchBar";
@@ -21,17 +22,21 @@ export default class Unsplash extends Component {
         }
       })
       .catch(err => console.log(err));
-    const picItems =
+    const picItems = _.uniqBy(
       this.state.term === term
         ? [...this.state.pics, ...response.data.results]
-        : response.data.results;
+        : response.data.results,
+      "id"
+    );
+
+    console.log(picItems);
+
     this.setState({
       pics: picItems,
       showResults: true,
       term: term,
       offsetPage: page + 1
     });
-    console.log(this.state.pics);
   };
 
   renderShowMoreButton() {

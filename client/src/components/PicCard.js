@@ -10,23 +10,20 @@ class PicCard extends React.Component {
 
     this.state = { spans: 0, visible: false, previouslySaved: false };
 
-    this.picRef = React.createRef();
+    this.itemRef = React.createRef();
   }
 
   componentDidMount() {
-    this.picRef.current.addEventListener("load", this.setSpans);
+    this.itemRef.current.addEventListener("load", this.setSpans);
+    window.addEventListener("resize", this.setSpans);
   }
 
   setSpans = () => {
-    const height = this.picRef.current.clientHeight;
+    const height = this.itemRef.current.height;
 
-    const spans = Math.ceil(height / 10 + 1);
+    const spans = Math.ceil(height / 12);
 
-    this.setState({ spans: spans });
-  };
-
-  handleImageLoaded = () => {
-    this.setState({ visible: true });
+    this.setState({ spans: spans, visible: true });
   };
 
   handleSave = ({ id, description, urls, alt_description }) => {
@@ -66,12 +63,7 @@ class PicCard extends React.Component {
         className={this.state.visible ? "fadeIn" : "fadeOut"}
         style={{ position: "relative" }}
       >
-        <img
-          ref={this.picRef}
-          onLoad={this.handleImageLoaded}
-          alt={pic.description}
-          src={pic.urls.regular}
-        />
+        <img ref={this.itemRef} alt={pic.description} src={pic.urls.regular} />
         {this.renderSaveButton()}
       </div>
     );

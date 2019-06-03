@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import _ from "lodash";
 
 import giphy from "../api/giphy";
 import SearchBar from "../components/SearchBar";
@@ -21,10 +22,13 @@ export default class Giphy extends Component {
         }
       })
       .catch(err => console.log(err));
-    const gifItems =
+    const gifItems = _.uniqBy(
       this.state.term === term
         ? [...this.state.gifs, ...response.data.data]
-        : response.data.data;
+        : response.data.data,
+      "id"
+    );
+
     offset = this.state.offset + 25;
     this.setState({
       gifs: gifItems,
