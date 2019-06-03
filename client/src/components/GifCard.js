@@ -101,7 +101,7 @@ class GifCard extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { userId: state.auth.userId, lolbox: state.lolbox };
+  return { userId: state.auth.userId };
 };
 
 export default connect(
