@@ -41,6 +41,25 @@ class PicCard extends React.Component {
     }
   };
 
+  renderSaveButton = () => {
+    return !this.state.previouslySaved && this.props.userId ? (
+      <i
+        className="ui inverted save outline large icon save-icon"
+        onClick={() => {
+          this.handleSave(this.props.pic);
+        }}
+      />
+    ) : (
+      <i
+        className={
+          !this.props.userId
+            ? ""
+            : "ui inverted check square large icon check-icon"
+        }
+      />
+    );
+  };
+
   renderImg({ pic }) {
     return (
       <div
@@ -53,16 +72,7 @@ class PicCard extends React.Component {
           alt={pic.description}
           src={pic.urls.regular}
         />
-        {!this.state.previouslySaved ? (
-          <i
-            className="ui inverted save outline large icon save-icon"
-            onClick={() => {
-              this.handleSave(this.props.pic);
-            }}
-          />
-        ) : (
-          <i className="ui inverted check square large icon check-icon" />
-        )}
+        {this.renderSaveButton()}
       </div>
     );
   }

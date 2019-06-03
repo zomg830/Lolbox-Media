@@ -1,13 +1,13 @@
 .gif-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
   grid-gap: 0 10px;
   justify-items: center;
   grid-auto-rows: 10px;
 }
 
 .gif-list img {
-  width: 300px;
+  width: 325px;
 }
 
 .gif:hover {
