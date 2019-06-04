@@ -1,30 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import "./GifList.css";
 import { saveLolboxItem } from "../actions";
 
 class PicCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { spans: 0, visible: false, previouslySaved: false };
+    this.state = {
+      previouslySaved: false,
+      loadingState: "ui active centered inline loader"
+    };
 
     this.itemRef = React.createRef();
   }
 
-  componentDidMount() {
-    this.itemRef.current.addEventListener("load", this.setSpans);
-    window.addEventListener("resize", this.setSpans);
+  handleItemLoaded() {
+    this.setState({ loadingState: null });
   }
-
-  setSpans = () => {
-    const height = this.itemRef.current.height;
-
-    const spans = Math.ceil(height / 12);
-
-    this.setState({ spans: spans, visible: true });
-  };
 
   handleSave = ({ id, description, urls, alt_description }) => {
     if (!this.state.previouslySaved) {
@@ -59,22 +52,20 @@ class PicCard extends React.Component {
 
   renderImg({ pic }) {
     return (
-      <div
-        className={this.state.visible ? "fadeIn" : "fadeOut"}
-        style={{ position: "relative" }}
-      >
-        <img ref={this.itemRef} alt={pic.description} src={pic.urls.regular} />
-        {this.renderSaveButton()}
+      <div className={this.state.loadingState} style={{ position: "relative" }}>
+        <img
+          ref={this.itemRef}
+          alt={pic.description}
+          src={pic.urls.small}
+          onLoad={this.handleItemLoaded.bind(this)}
+        />
+        {!this.state.loadingState ? this.renderSaveButton() : null}
       </div>
     );
   }
 
   render() {
-    return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        {this.renderImg(this.props)}
-      </div>
-    );
+    return <div>{this.renderImg(this.props)}</div>;
   }
 }
 

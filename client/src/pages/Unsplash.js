@@ -28,7 +28,6 @@ export default class Unsplash extends Component {
         : response.data.results,
       "id"
     );
-
     console.log(picItems);
 
     this.setState({

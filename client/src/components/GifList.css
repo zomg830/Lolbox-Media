@@ -1,12 +1,4 @@
-.gif-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 0 12px;
-  justify-items: center;
-  grid-auto-rows: 12px;
-}
-
-.gif-list img {
+img {
   width: 100%;
 }
 
@@ -49,7 +41,7 @@
 
 .check-icon {
   position: absolute;
-  top: 2%;
+  top: 1%;
   right: 0%;
   width: 1.2em;
 }
@@ -72,7 +64,7 @@
 
 .delete-icon {
   position: absolute;
-  top: 2%;
+  top: 1%;
   right: 0%;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;

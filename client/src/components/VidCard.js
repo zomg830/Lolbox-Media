@@ -5,13 +5,9 @@ class VidCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { spans: 0 };
+    this.state = { visible: false };
 
     this.vidRef = React.createRef();
-  }
-
-  componentDidMount() {
-    this.vidRef.current.addEventListener("load", this.setSpans);
   }
 
   decodeHtml(html) {
@@ -20,33 +16,32 @@ class VidCard extends React.Component {
     return txt.value;
   }
 
-  setSpans = () => {
-    const height = this.vidRef.current.clientHeight;
+  handleItemLoaded() {
+    this.setState({ visible: true });
+  }
 
-    const spans = Math.ceil(height / 10 + 1);
-
-    this.setState({ spans: spans });
-  };
+  renderVid({ vid }) {
+    return (
+      <Popup
+        trigger={
+          <img
+            ref={this.vidRef}
+            alt={vid.snippet.description}
+            src={vid.snippet.thumbnails.high.url}
+            onLoad={this.handleItemLoaded.bind(this)}
+            onClick={() => this.props.onVideoSelect(vid)}
+          />
+        }
+        content={this.decodeHtml(vid.snippet.channelTitle.trim())}
+        header={this.decodeHtml(vid.snippet.title.trim())}
+      />
+    );
+  }
 
   render() {
-    const vid = this.props.vid;
-
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        <Popup
-          trigger={
-            <div className="ui fluid container">
-              <img
-                ref={this.vidRef}
-                alt={vid.snippet.description}
-                src={vid.snippet.thumbnails.high.url}
-                onClick={() => this.props.onVideoSelect(vid)}
-              />
-            </div>
-          }
-          content={this.decodeHtml(vid.snippet.channelTitle.trim())}
-          header={this.decodeHtml(vid.snippet.title.trim())}
-        />
+      <div style={{ display: this.state.visible ? "" : "none" }}>
+        {this.renderVid(this.props)}
       </div>
     );
   }

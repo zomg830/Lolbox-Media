@@ -8,34 +8,24 @@ class GifCard extends React.Component {
     super(props);
 
     this.state = {
-      spans: 0,
       animated: false,
       previouslySaved: false,
-      visible: false
+      loadingState: "ui active centered inline loader"
     };
 
-    this.gifRef = React.createRef();
+    this.itemRef = React.createRef();
   }
 
-  componentDidMount() {
-    this.gifRef.current.addEventListener("load", this.setSpans);
-    window.addEventListener("resize", this.setSpans);
+  handleItemLoaded() {
+    this.setState({ loadingState: null });
   }
-
-  setSpans = () => {
-    const height = this.gifRef.current.height;
-
-    const spans = Math.ceil(height / 6 + 1);
-
-    this.setState({ spans: spans, visible: true });
-  };
 
   handleClick = () => {
     if (this.state.animated === false) {
-      this.gifRef.current.src = this.gifRef.current.dataset.animate;
+      this.itemRef.current.src = this.itemRef.current.dataset.animate;
       this.setState({ animated: true });
     } else {
-      this.gifRef.current.src = this.gifRef.current.dataset.still;
+      this.itemRef.current.src = this.itemRef.current.dataset.still;
       this.setState({ animated: false });
     }
   };
@@ -49,14 +39,6 @@ class GifCard extends React.Component {
       });
       this.setState({ previouslySaved: true });
     }
-  };
-
-  setSpans = () => {
-    const height = this.gifRef.current.height;
-
-    const spans = Math.ceil(height / 6 + 1);
-
-    this.setState({ spans: spans });
   };
 
   renderSaveButton = () => {
@@ -78,29 +60,32 @@ class GifCard extends React.Component {
     );
   };
 
-  render() {
-    const gif = this.props.gif;
-
+  renderImg({ gif }) {
     return (
       <div
+        className={this.state.loadingState}
         style={{
-          gridRowEnd: `span ${this.state.spans}`,
           position: "relative"
         }}
       >
         <img
-          ref={this.gifRef}
+          ref={this.itemRef}
           alt={gif.title}
           src={gif.images.fixed_width_still.url}
           data-status="0"
           data-animate={gif.images.fixed_width.url}
           data-still={gif.images.fixed_width_still.url}
           onClick={this.handleClick}
+          onLoad={this.handleItemLoaded.bind(this)}
           className="gif"
         />
-        {this.renderSaveButton()}
+        {!this.state.loadingState ? this.renderSaveButton() : null}
       </div>
     );
+  }
+
+  render() {
+    return <div>{this.renderImg(this.props)}</div>;
   }
 }
 

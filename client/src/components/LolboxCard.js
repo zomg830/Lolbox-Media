@@ -1,30 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import "./GifList.css";
 import { fetchLolbox, deleteLolboxItem } from "../actions";
 
 class LolboxCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { spans: 0, visible: false };
+    this.state = { visible: false };
 
     this.itemRef = React.createRef();
   }
 
-  componentDidMount() {
-    this.itemRef.current.addEventListener("load", this.setSpans);
-    window.addEventListener("resize", this.setSpans);
+  handleItemLoaded() {
+    this.setState({ visible: true });
   }
-
-  setSpans = () => {
-    const height = this.itemRef.current.height;
-
-    const spans = Math.ceil(height / 6 + 1);
-
-    this.setState({ spans: spans, visible: true });
-  };
 
   handleDelete = id => {
     this.setState({ visible: false });
@@ -46,7 +36,7 @@ class LolboxCard extends React.Component {
           ref={this.itemRef}
           alt={displayAlt}
           src={displayUrl}
-          onLoad={this.handleImageLoaded}
+          onLoad={this.handleItemLoaded.bind(this)}
         />
         <i
           className="ui large inverted times circle outline icon delete-icon"
