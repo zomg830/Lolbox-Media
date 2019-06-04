@@ -16,7 +16,14 @@ export default class Youtube extends Component {
   };
 
   onVideoSelect = video => {
-    this.setState({ selectedVideo: video });
+    if (video.id.kind === "youtube#channel") {
+      window.open(
+        `https://www.youtube.com/channel/${video.id.channelId}`,
+        "_blank"
+      );
+    } else {
+      this.setState({ selectedVideo: video });
+    }
   };
 
   onSearchSubmit = async (term, pageToken = null) => {

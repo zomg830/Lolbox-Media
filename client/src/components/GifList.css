@@ -2,7 +2,8 @@ img {
   width: 100%;
 }
 
-.gif:hover {
+.gif:hover,
+.vid-thumbnail:hover {
   cursor: pointer;
 }
 

@@ -28,6 +28,8 @@ class VidCard extends React.Component {
         trigger={
           <div className={this.state.loadingState}>
             <img
+              className="vid-thumbnail"
+              style={{ display: this.state.loadingState ? "none" : null }}
               ref={this.vidRef}
               alt={vid.snippet.description}
               src={vid.snippet.thumbnails.high.url}

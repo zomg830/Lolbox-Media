@@ -54,6 +54,7 @@ class PicCard extends React.Component {
     return (
       <div className={this.state.loadingState} style={{ position: "relative" }}>
         <img
+          style={{ display: this.state.loadingState ? "none" : null }}
           ref={this.itemRef}
           alt={pic.description}
           src={pic.urls.small}
