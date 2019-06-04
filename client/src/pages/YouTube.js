@@ -41,7 +41,6 @@ export default class Youtube extends Component {
         : response.data.items,
       "id.videoId"
     );
-    console.log(vidItems);
     this.setState({
       vids: vidItems,
       term: term,
