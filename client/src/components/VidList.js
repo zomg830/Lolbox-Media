@@ -2,7 +2,7 @@ import "./GifList.css";
 import React from "react";
 import VidCard from "./VidCard";
 import StackGrid, { transitions } from "react-stack-grid";
-const { fade } = transitions;
+const { scaleDown } = transitions;
 
 const VidList = props => {
   const vids = props.vids.map(vid => {
@@ -13,14 +13,12 @@ const VidList = props => {
   return (
     <div style={{ marginTop: "10px" }}>
       <StackGrid
-        columnWidth={250}
-        appearDelay={100}
         monitorImagesLoaded={true}
-        appear={fade.appear}
-        appeared={fade.appeared}
-        enter={fade.enter}
-        entered={fade.entered}
-        leaved={fade.leaved}
+        appear={scaleDown.appear}
+        appeared={scaleDown.appeared}
+        enter={scaleDown.enter}
+        entered={scaleDown.entered}
+        leaved={scaleDown.leaved}
       >
         {vids}
       </StackGrid>

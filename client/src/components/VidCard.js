@@ -5,7 +5,7 @@ class VidCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { visible: false };
+    this.state = { loadingState: "ui active centered inline loader" };
 
     this.vidRef = React.createRef();
   }
@@ -17,20 +17,24 @@ class VidCard extends React.Component {
   }
 
   handleItemLoaded() {
-    this.setState({ visible: true });
+    this.setState({
+      loadingState: null
+    });
   }
 
   renderVid({ vid }) {
     return (
       <Popup
         trigger={
-          <img
-            ref={this.vidRef}
-            alt={vid.snippet.description}
-            src={vid.snippet.thumbnails.high.url}
-            onLoad={this.handleItemLoaded.bind(this)}
-            onClick={() => this.props.onVideoSelect(vid)}
-          />
+          <div className={this.state.loadingState}>
+            <img
+              ref={this.vidRef}
+              alt={vid.snippet.description}
+              src={vid.snippet.thumbnails.high.url}
+              onLoad={this.handleItemLoaded.bind(this)}
+              onClick={() => this.props.onVideoSelect(vid)}
+            />
+          </div>
         }
         content={this.decodeHtml(vid.snippet.channelTitle.trim())}
         header={this.decodeHtml(vid.snippet.title.trim())}
@@ -39,11 +43,7 @@ class VidCard extends React.Component {
   }
 
   render() {
-    return (
-      <div style={{ display: this.state.visible ? "" : "none" }}>
-        {this.renderVid(this.props)}
-      </div>
-    );
+    return <div>{this.renderVid(this.props)}</div>;
   }
 }
 

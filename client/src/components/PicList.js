@@ -13,7 +13,6 @@ const PicList = props => {
     <div style={{ marginTop: "10px" }}>
       <StackGrid
         columnWidth={250}
-        appearDelay={100}
         monitorImagesLoaded={true}
         appear={fade.appear}
         appeared={fade.appeared}
