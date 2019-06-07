@@ -1,24 +1,13 @@
 import {
-  SIGN_IN,
-  SIGN_OUT,
   SAVE_ITEM,
   FETCH_LOLBOX,
-  DELETE_ITEM
+  DELETE_ITEM,
+  AUTH_USER,
+  AUTH_ERROR,
+  SET_ID
 } from "./types";
 import API from "../api/lolboxAPI";
-
-export const signIn = userId => {
-  return {
-    type: SIGN_IN,
-    payload: userId
-  };
-};
-
-export const signOut = () => {
-  return {
-    type: SIGN_OUT
-  };
-};
+import history from "../history";
 
 export const saveLolboxItem = lolboxData => async (dispatch, getState) => {
   const { userId } = getState().auth;
@@ -38,3 +27,43 @@ export const deleteLolboxItem = id => dispatch => {
 
   dispatch({ type: DELETE_ITEM, payload: id });
 };
+
+export const signup = (formProps, callback) => async dispatch => {
+  try {
+    const response = await API.signup(formProps);
+
+    dispatch({ type: AUTH_USER, payload: response.data.token });
+    localStorage.setItem("token", response.data.token);
+    callback();
+  } catch (e) {
+    dispatch({ type: AUTH_ERROR, payload: "Email in use" });
+  }
+};
+
+export const login = formProps => async dispatch => {
+  try {
+    const response = await API.login(formProps);
+
+    dispatch({ type: AUTH_USER, payload: response.data.token });
+    localStorage.setItem("token", response.data.token);
+  } catch (e) {
+    dispatch({ type: AUTH_ERROR, payload: "Invalid login credentials" });
+  }
+};
+
+export const signout = () => {
+  localStorage.removeItem("token");
+  history.push("/");
+  return {
+    type: AUTH_USER,
+    payload: ""
+  };
+};
+
+export const setId = token => async dispatch => {
+  const response = await API.getSession(token);
+  dispatch({ type: SET_ID, payload: response.data.userId });
+};
+
+export const destroyId = () => async dispatch =>
+  dispatch({ type: SET_ID, payload: "" });

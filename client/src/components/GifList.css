@@ -2,10 +2,6 @@ img {
   width: 100%;
 }
 
-html {
-  overflow-y: scroll;
-}
-
 .gif:hover,
 .vid-thumbnail:hover {
   cursor: pointer;
