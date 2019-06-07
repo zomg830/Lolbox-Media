@@ -28,13 +28,12 @@ export const deleteLolboxItem = id => dispatch => {
   dispatch({ type: DELETE_ITEM, payload: id });
 };
 
-export const signup = (formProps, callback) => async dispatch => {
+export const signup = formProps => async dispatch => {
   try {
     const response = await API.signup(formProps);
 
     dispatch({ type: AUTH_USER, payload: response.data.token });
     localStorage.setItem("token", response.data.token);
-    callback();
   } catch (e) {
     dispatch({ type: AUTH_ERROR, payload: "Email in use" });
   }

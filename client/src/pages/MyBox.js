@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { fetchLolbox } from "../actions";
-import requireAuth from "../components/requireAuth";
 import LolboxList from "../components/LolboxList";
 
 class MyBox extends Component {

@@ -10,7 +10,7 @@ class Login extends Component {
   onSubmit = async formProps => {
     await this.props.login(formProps);
     await this.props.setId(localStorage.token);
-    history.push("/");
+    history.push("/lolbox");
   };
 
   renderForm() {

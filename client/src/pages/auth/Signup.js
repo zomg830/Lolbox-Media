@@ -3,14 +3,15 @@ import { reduxForm, Field } from "redux-form";
 import { compose } from "redux";
 import { connect } from "react-redux";
 
+import history from "../../history";
 import * as actions from "../../actions";
 
 class Signup extends Component {
   onSubmit = async formProps => {
     console.log(formProps);
     await this.props.signup(formProps);
-    await this.props.login(formProps);
     await this.props.setId(localStorage.token);
+    history.push("/lolbox");
   };
 
   renderForm() {
