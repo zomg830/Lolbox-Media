@@ -10,7 +10,8 @@ const userSchema = new Schema({
     default: () => nanoid(10)
   },
   email: { type: String, unique: true, lowercase: true },
-  password: String
+  password: String,
+  lolbox: Array
 });
 
 // On Save Hook, encrypt password

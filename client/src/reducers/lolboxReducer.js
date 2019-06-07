@@ -10,7 +10,7 @@ export default (state = {}, action) => {
       userArr = state.userArr.filter(el => el._id !== action.payload);
       return { ...state, userArr };
     case FETCH_LOLBOX:
-      userArr = action.payload.map(el => el);
+      userArr = action.payload;
       return { ...state, userArr };
     default:
       return state;

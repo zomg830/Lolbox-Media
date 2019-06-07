@@ -19,7 +19,7 @@ export const saveLolboxItem = lolboxData => async (dispatch, getState) => {
 export const fetchLolbox = userId => async dispatch => {
   const response = await API.getUserLolbox(userId);
 
-  dispatch({ type: FETCH_LOLBOX, payload: response.data });
+  dispatch({ type: FETCH_LOLBOX, payload: response.data.lolbox });
 };
 
 export const deleteLolboxItem = id => dispatch => {
@@ -53,7 +53,7 @@ export const login = formProps => async dispatch => {
 
 export const signout = () => {
   localStorage.removeItem("token");
-  history.push("/");
+  history.push("/lolbox");
   return {
     type: AUTH_USER,
     payload: ""

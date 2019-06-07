@@ -8,8 +8,10 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByUserId: function(req, res) {
-    db.Lolbox.find({ userId: req.params.userId })
-      .then(dbModel => res.json(dbModel))
+    db.User.findById(req.params.userId, "lolbox")
+      .then(lolbox => {
+        res.json(lolbox);
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
@@ -18,7 +20,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Lolbox.create(req.body)
+    console.log(req.body);
+    db.User.findByIdAndUpdate(
+      req.body.userId,
+      {
+        $push: { lolbox: [req.body] }
+      },
+      { upsert: true }
+    )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

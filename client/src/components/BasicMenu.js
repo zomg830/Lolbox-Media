@@ -9,7 +9,7 @@ export default class BasicMenu extends Component {
 
   componentWillMount() {
     let activePath = history.location.pathname;
-    let activeItem = activePath === "/" ? "lolbox" : "mybox";
+    let activeItem = activePath;
     this.setState({ activeItem });
   }
 
