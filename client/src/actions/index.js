@@ -64,5 +64,7 @@ export const setId = token => async dispatch => {
   dispatch({ type: SET_ID, payload: response.data });
 };
 
-export const destroyId = () => async dispatch =>
+export const destroyId = () => async dispatch => {
   dispatch({ type: SET_ID, payload: "" });
+  window.location.reload();
+};
