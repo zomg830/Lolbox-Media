@@ -68,7 +68,7 @@ const Signup = props => {
           type="password"
           component={renderField}
           label="Password"
-          validate={required}
+          validate={[required, minLength8]}
           warn={minLength8}
         />
       </div>
