@@ -12,9 +12,9 @@ class Auth extends Component {
   renderSignInButton() {
     return this.props.isLoggedIn ? (
       <div>
-        <label className="email-display">{this.props.email} </label>
+        <label className="item email-display">{this.props.email} </label>
         <button
-          className="ui button"
+          className="ui violet button"
           onClick={() => {
             this.props.signout();
             this.props.destroyId();
@@ -24,11 +24,12 @@ class Auth extends Component {
         </button>
       </div>
     ) : (
-      <div>
+      <div className="ui buttons">
         <Link to="/login" className="ui button">
           Login
         </Link>
-        <Link to="/signup" className="ui button">
+        <div className="or" />
+        <Link to="/signup" className="ui violet button">
           Sign up
         </Link>
       </div>

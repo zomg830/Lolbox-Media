@@ -83,6 +83,10 @@ img {
   transition: all 0.5s ease-in-out;
 }
 
+.email-display {
+  display: inline;
+}
+
 @media screen and (max-width: 600px) {
   .email-display {
     visibility: hidden;
