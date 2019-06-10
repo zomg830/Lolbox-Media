@@ -15,15 +15,15 @@ class App extends React.Component {
       <div>
         <Router history={history}>
           <BasicMenu fluid={true} />
-          <div className="ui container">
-            <Switch>
-              <Route exact path="/" component={Landing} />
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <div className="ui container">
               <Route exact path="/lolbox" component={Tabs} />
               <Route exact path="/mybox" component={MyBox} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-            </Switch>
-          </div>
+            </div>
+          </Switch>
         </Router>
       </div>
     );
