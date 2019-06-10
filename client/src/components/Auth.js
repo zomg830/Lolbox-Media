@@ -11,15 +11,18 @@ class Auth extends Component {
 
   renderSignInButton() {
     return this.props.isLoggedIn ? (
-      <button
-        className="ui button"
-        onClick={() => {
-          this.props.signout();
-          this.props.destroyId();
-        }}
-      >
-        Sign out
-      </button>
+      <div>
+        <label className="email-display">{this.props.email} </label>
+        <button
+          className="ui button"
+          onClick={() => {
+            this.props.signout();
+            this.props.destroyId();
+          }}
+        >
+          Sign out
+        </button>
+      </div>
     ) : (
       <div>
         <Link to="/login" className="ui button">
@@ -38,7 +41,11 @@ class Auth extends Component {
 }
 
 const mapStateToProps = state => {
-  return { token: state.auth.authenticated, isLoggedIn: state.auth.isLoggedIn };
+  return {
+    token: state.auth.authenticated,
+    isLoggedIn: state.auth.isLoggedIn,
+    email: state.auth.email
+  };
 };
 
 export default connect(

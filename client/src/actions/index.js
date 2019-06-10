@@ -22,8 +22,8 @@ export const fetchLolbox = userId => async dispatch => {
   dispatch({ type: FETCH_LOLBOX, payload: response.data.lolbox });
 };
 
-export const deleteLolboxItem = id => dispatch => {
-  API.deleteLolboxItem(id);
+export const deleteLolboxItem = (userId, id) => dispatch => {
+  API.deleteLolboxItem(userId, id);
 
   dispatch({ type: DELETE_ITEM, payload: id });
 };
@@ -61,7 +61,7 @@ export const signout = () => {
 
 export const setId = token => async dispatch => {
   const response = await API.getSession(token);
-  dispatch({ type: SET_ID, payload: response.data.userId });
+  dispatch({ type: SET_ID, payload: response.data });
 };
 
 export const destroyId = () => async dispatch =>

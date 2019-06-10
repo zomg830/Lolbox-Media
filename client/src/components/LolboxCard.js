@@ -18,9 +18,9 @@ class LolboxCard extends React.Component {
     this.setState({ loadingState: null });
   }
 
-  handleDelete = id => {
+  handleDelete = (userId, id) => {
     this.setState({ visible: false });
-    this.props.deleteLolboxItem(id);
+    this.props.deleteLolboxItem(userId, id);
   };
 
   renderImg() {
@@ -48,7 +48,7 @@ class LolboxCard extends React.Component {
       <i
         className="ui large inverted times circle outline icon delete-icon"
         onClick={() => {
-          this.handleDelete(this.props.item._id);
+          this.handleDelete(this.props.item.userId, this.props.item.id);
         }}
       />
     );

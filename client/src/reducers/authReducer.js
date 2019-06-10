@@ -14,7 +14,8 @@ export default function(state = INITIAL_STATE, action) {
     case SET_ID:
       return {
         ...state,
-        userId: action.payload,
+        userId: action.payload.userId,
+        email: action.payload.email,
         isLoggedIn: !action.payload ? false : true
       };
     default:
