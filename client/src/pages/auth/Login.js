@@ -68,7 +68,7 @@ const Login = props => {
       </div>
       <div className={errorMessage ? "ui message" : null}>{errorMessage}</div>
       <button className="ui button" type="submit" disabled={submitting}>
-        Submit
+        Login
       </button>
       <button
         className="ui button"

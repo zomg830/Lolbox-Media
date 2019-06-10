@@ -84,7 +84,7 @@ img {
 }
 
 .email-display {
-  display: inline;
+  display: inline !important;
 }
 
 @media screen and (max-width: 600px) {

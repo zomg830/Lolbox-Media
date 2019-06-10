@@ -25,7 +25,7 @@ export default class BasicMenu extends Component {
         <Menu text secondary size="large">
           <Menu.Item
             name="lolbox"
-            active={activeItem === "lolbox"}
+            active={activeItem.includes("lolbox")}
             onClick={this.handleItemClick}
           >
             Lolbox Media Search
@@ -33,7 +33,7 @@ export default class BasicMenu extends Component {
 
           <Menu.Item
             name="mybox"
-            active={activeItem === "mybox"}
+            active={activeItem.includes("mybox")}
             onClick={this.handleItemClick}
           >
             My Box
