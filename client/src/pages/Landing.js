@@ -29,7 +29,7 @@ const Landing = () => {
           </div>
           <div class="row">
             <div class="center aligned column">
-              <a href="/lolbox" class="ui huge purple button">
+              <a href="/lolbox" class="ui huge violet button">
                 Check It Out
               </a>
             </div>

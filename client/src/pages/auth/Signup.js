@@ -72,7 +72,9 @@ const Signup = props => {
           warn={minLength8}
         />
       </div>
-      <div className={errorMessage ? "ui message" : null}>{errorMessage}</div>
+      {errorMessage === "Invalid login credentials" ? null : (
+        <div className={errorMessage ? "ui message" : null}>{errorMessage}</div>
+      )}
       <button className="ui button" type="submit" disabled={submitting}>
         Sign Up
       </button>

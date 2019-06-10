@@ -7,8 +7,9 @@ import history from "../history";
 export default class BasicMenu extends Component {
   state = { activeItem: "" };
 
-  async componentDidMount() {
-    await this.setState({ activeItem: history.location.pathname });
+  componentWillMount() {
+    console.log(history.location.pathname);
+    this.setState({ activeItem: history.location.pathname });
   }
 
   handleItemClick = (e, { name }) => {

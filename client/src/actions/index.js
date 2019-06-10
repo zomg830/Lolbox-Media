@@ -45,6 +45,7 @@ export const login = formProps => async dispatch => {
 
     dispatch({ type: AUTH_USER, payload: response.data.token });
     localStorage.setItem("token", response.data.token);
+    history.push("/lolbox");
   } catch (e) {
     dispatch({ type: AUTH_ERROR, payload: "Invalid login credentials" });
   }
@@ -59,8 +60,9 @@ export const signout = () => {
   };
 };
 
-export const setId = token => async dispatch => {
+export const setId = (token, pathname) => async dispatch => {
   const response = await API.getSession(token);
+  response.data.pathname = pathname;
   dispatch({ type: SET_ID, payload: response.data });
 };
 

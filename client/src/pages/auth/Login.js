@@ -3,7 +3,6 @@ import { reduxForm, Field } from "redux-form";
 import { compose } from "redux";
 import { connect } from "react-redux";
 
-import history from "../../history";
 import * as actions from "../../actions";
 
 const required = value => (value ? undefined : "Required");
@@ -43,7 +42,6 @@ const Login = props => {
   const onSubmit = async formProps => {
     await login(formProps);
     await setId(localStorage.token);
-    history.push("/lolbox");
   };
 
   return (
@@ -66,7 +64,9 @@ const Login = props => {
           validate={required}
         />
       </div>
-      <div className={errorMessage ? "ui message" : null}>{errorMessage}</div>
+      {errorMessage === "Email in use" ? null : (
+        <div className={errorMessage ? "ui message" : null}>{errorMessage}</div>
+      )}
       <button className="ui button" type="submit" disabled={submitting}>
         Login
       </button>
