@@ -6,7 +6,7 @@ import SearchBar from "../components/SearchBar";
 import GifList from "../components/GifList";
 import BannerSegment from "../components/BannerSegment";
 
-const KEY = process.env.REACT_APP_GIPHY_KEY;
+const KEY = process.env.REACT_APP_GIPHY;
 
 export default class Giphy extends Component {
   state = { gifs: [], showResults: false, term: null, offset: 0 };

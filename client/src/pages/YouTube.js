@@ -45,7 +45,6 @@ export default class Youtube extends Component {
       vids: vidItems,
       term: term,
       showResults: true,
-      selectedVideo: response.data.items[0],
       pageToken: response.data.nextPageToken
     });
   };

@@ -9,7 +9,8 @@ router
 router
   .route("/:id")
   .get(lolboxController.findById)
-  .put(lolboxController.update)
-  .delete(lolboxController.remove);
+  .put(lolboxController.update);
+
+router.route("/:userId/:id").delete(lolboxController.remove);
 
 module.exports = router;

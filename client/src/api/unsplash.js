@@ -2,5 +2,7 @@ import axios from "axios";
 
 export default axios.create({
   baseURL: "https://api.unsplash.com/",
-  header: { crossdomain: true }
+  header: {
+    "cross-domain": true
+  }
 });

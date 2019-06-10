@@ -6,7 +6,7 @@ import LolboxList from "../components/LolboxList";
 
 class MyBox extends Component {
   async componentDidMount() {
-    await this.props.fetchLolbox(this.props.userId);
+    if (this.props.userId) await this.props.fetchLolbox(this.props.userId);
   }
 
   async componentDidUpdate(prevProps) {

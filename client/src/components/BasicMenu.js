@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Menu } from "semantic-ui-react";
 
-import GoogleAuth from "./GoogleAuth";
+import Auth from "./Auth";
 import history from "../history";
 
 export default class BasicMenu extends Component {
@@ -9,12 +9,12 @@ export default class BasicMenu extends Component {
 
   componentWillMount() {
     let activePath = history.location.pathname;
-    let activeItem = activePath === "/" ? "lolbox" : "mybox";
+    let activeItem = activePath;
     this.setState({ activeItem });
   }
 
   handleItemClick = (e, { name }) => {
-    let route = name === "lolbox" ? "/" : "/mybox";
+    let route = name;
     this.setState({ activeItem: name });
     history.push(route);
   };
@@ -40,7 +40,7 @@ export default class BasicMenu extends Component {
           My Box
         </Menu.Item>
         <Menu.Menu position="right">
-          <GoogleAuth />
+          <Auth />
         </Menu.Menu>
       </Menu>
     );

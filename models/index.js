@@ -1,3 +1,4 @@
 module.exports = {
-  Lolbox: require("./lolbox")
+  Lolbox: require("./lolbox"),
+  User: require("./user")
 };

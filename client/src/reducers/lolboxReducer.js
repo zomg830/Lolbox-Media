@@ -7,10 +7,10 @@ export default (state = {}, action) => {
     case SAVE_ITEM:
       return { ...state, [action.payload._id]: action.payload };
     case DELETE_ITEM:
-      userArr = state.userArr.filter(el => el._id !== action.payload);
+      userArr = state.userArr.filter(el => el.id !== action.payload);
       return { ...state, userArr };
     case FETCH_LOLBOX:
-      userArr = action.payload.map(el => el);
+      userArr = action.payload;
       return { ...state, userArr };
     default:
       return state;

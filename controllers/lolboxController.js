@@ -8,8 +8,10 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByUserId: function(req, res) {
-    db.Lolbox.find({ userId: req.params.userId })
-      .then(dbModel => res.json(dbModel))
+    db.User.findById(req.params.userId, "lolbox")
+      .then(lolbox => {
+        res.json(lolbox);
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
@@ -18,7 +20,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Lolbox.create(req.body)
+    db.User.findByIdAndUpdate(
+      req.body.userId,
+      {
+        $push: { lolbox: [req.body] }
+      },
+      { upsert: true }
+    )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -28,9 +36,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Lolbox.findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    db.User.update(
+      { _id: req.params.userId },
+      { $pull: { lolbox: { id: req.params.id } } }
+    ).catch(err => res.status(422).json(err));
   }
 };
