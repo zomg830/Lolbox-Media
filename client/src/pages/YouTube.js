@@ -6,6 +6,8 @@ import SearchBar from "../components/SearchBar";
 import VidList from "../components/VidList";
 import BannerSegment from "../components/BannerSegment";
 
+const KEY = process.env.REACT_APP_YOUTUBE;
+
 export default class Youtube extends Component {
   state = {
     vids: [],
@@ -31,7 +33,10 @@ export default class Youtube extends Component {
       .get("/search", {
         params: {
           q: term,
-          pageToken: pageToken
+          pageToken: pageToken,
+          part: "snippet",
+          maxResults: 20,
+          key: KEY
         }
       })
       .catch(err => console.log(err));
