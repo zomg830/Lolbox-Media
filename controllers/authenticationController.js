@@ -1,14 +1,14 @@
+require("dotenv").config();
 const jwt = require("jwt-simple");
 const User = require("../models/user");
-const config = require("../config");
 
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+  return jwt.encode({ sub: user.id, iat: timestamp }, process.env.SECRET);
 }
 
 exports.fetchUser = async token => {
-  const userId = await jwt.decode(token, config.secret).sub;
+  const userId = await jwt.decode(token, process.env.SECRET).sub;
   const { email } = await User.findById(userId, "email");
 
   return { userId, email };
