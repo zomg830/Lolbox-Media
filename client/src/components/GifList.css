@@ -1,5 +1,6 @@
 img {
   width: 100%;
+  border-radius: 8px;
 }
 
 .gif:hover,
@@ -11,48 +12,33 @@ img {
   background-color: #9a00a8;
 }
 
-.fadeOut {
-  opacity: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-.fadeIn {
-  opacity: 1;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+.check-icon {
+  position: absolute;
+  top: 2%;
+  right: 0%;
+  width: 1.2em;
 }
 
 .save-icon {
   position: absolute;
-  top: 1%;
+  top: 2%;
   right: 0%;
   width: 1.2em;
   background-color: #6435c9;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.check-icon {
-  position: absolute;
-  top: 1%;
-  right: 0%;
-  width: 1.2em;
-}
-
 .save-icon:hover {
   background-color: rgba(165, 55, 253, 0);
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .save-icon:active {
@@ -65,22 +51,34 @@ img {
 
 .delete-icon {
   position: absolute;
-  top: 1%;
+  top: 2%;
   right: 0%;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .delete-icon:hover {
   color: rgb(255, 0, 0) !important;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.comment-icon {
+  color: white;
+  position: absolute;
+  bottom: 4%;
+  left: 4%;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
 }
 
 .email-display {
@@ -106,4 +104,31 @@ img {
 
 .pusher > .segment {
   flex: 1;
+}
+
+.overlay {
+  position: absolute;
+  background-color: #6435c9;
+  overflow: hidden;
+  width: 40%;
+  left: 30%;
+  transition: 0.5s ease;
+  border-radius: 8px;
+}
+
+.overlay-container:hover .overlay {
+  bottom: 5%;
+  height: 20%;
+}
+
+.overlay-text {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  padding: auto;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

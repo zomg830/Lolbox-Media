@@ -36,7 +36,6 @@ const localLogin = new LocalStrategy(localOptions, function(
     });
   });
 });
-console.log(process.env.SECRET);
 // Setup options for JWT Strategy
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader("authorization"),

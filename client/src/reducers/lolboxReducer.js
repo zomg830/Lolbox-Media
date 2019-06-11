@@ -13,7 +13,6 @@ export default (state = {}, action) => {
       return { ...state, userArr };
     case FETCH_LOLBOX:
       userArr = _.uniqBy(action.payload, "id");
-      console.log(userArr);
       return { ...state, userArr };
     default:
       return state;

@@ -2,7 +2,7 @@ import "./GifList.css";
 import React from "react";
 import LolboxCard from "./LolboxCard";
 import StackGrid, { transitions } from "react-stack-grid";
-const { fade, scaleDown } = transitions;
+const { scaleDown } = transitions;
 
 const LolboxList = props => {
   const items = props.lolbox.map(item => {
@@ -12,12 +12,11 @@ const LolboxList = props => {
     <div style={{ marginTop: "10px" }}>
       <StackGrid
         columnWidth={250}
-        appearDelay={100}
         monitorImagesLoaded={true}
-        appear={fade.appear}
-        appeared={fade.appeared}
-        enter={fade.enter}
-        entered={fade.entered}
+        appear={scaleDown.appear}
+        appeared={scaleDown.appeared}
+        enter={scaleDown.enter}
+        entered={scaleDown.entered}
         leaved={scaleDown.leaved}
       >
         {items}
