@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { fetchLolbox, deleteLolboxItem } from "../actions";
+import LolboxModal from "./LolboxModal";
 
 class LolboxCard extends React.Component {
   constructor(props) {
@@ -51,11 +52,21 @@ class LolboxCard extends React.Component {
             commentClass: "big comment outline icon comment-icon"
           })
         }
-        onClick={() =>
+        onClick={() => {
           this.setState({
             commentClass: "big violet comment icon comment-icon"
-          })
-        }
+          });
+        }}
+      />
+    );
+  }
+
+  renderModal(title, url) {
+    return (
+      <LolboxModal
+        trigger={this.renderCommentButton()}
+        title={title}
+        url={url}
       />
     );
   }
@@ -73,10 +84,12 @@ class LolboxCard extends React.Component {
           ref={this.itemRef}
           alt={displayAlt}
           src={displayUrl}
-          onLoad={this.handleItemLoaded.bind(this)}
+          onLoad={() => this.handleItemLoaded()}
         />
         {!this.state.loadingState ? this.renderDeleteButton() : null}
-        {!this.state.loadingState ? this.renderCommentButton() : null}
+        {!this.state.loadingState
+          ? this.renderModal(displayAlt, displayUrl)
+          : null}
       </div>
     );
   }

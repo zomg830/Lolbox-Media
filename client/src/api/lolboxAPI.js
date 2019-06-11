@@ -9,5 +9,7 @@ export default {
   editLolbox: (id, lolboxData) => axios.put("/api/lolbox/" + id, lolboxData),
   signup: formProps => axios.post("/auth/signup", formProps),
   login: formProps => axios.post("/auth/login", formProps),
-  getSession: token => axios.get("/auth", { headers: { authorization: token } })
+  getSession: token =>
+    axios.get("/auth", { headers: { authorization: token } }),
+  postComment: formProps => axios.post("/comments", formProps)
 };

@@ -4,7 +4,8 @@ import {
   DELETE_ITEM,
   AUTH_USER,
   AUTH_ERROR,
-  SET_ID
+  SET_ID,
+  POST_COMMENT
 } from "./types";
 import API from "../api/lolboxAPI";
 import history from "../history";
@@ -69,4 +70,10 @@ export const setId = (token, pathname) => async dispatch => {
 export const destroyId = () => async dispatch => {
   dispatch({ type: SET_ID, payload: "" });
   window.location.reload();
+};
+
+export const postComment = (userId, id, comment) => async dispatch => {
+  const response = await API.postComment(userId, id, comment);
+
+  dispatch({ type: POST_COMMENT, payload: response.data });
 };
