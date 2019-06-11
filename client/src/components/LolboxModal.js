@@ -37,15 +37,8 @@ class LolboxModal extends Component {
   };
 
   render() {
-    const {
-      handleSubmit,
-      submitting,
-      trigger,
-      displayAlt,
-      displayUrl
-    } = this.props;
+    const { handleSubmit, submitting, trigger, title, url } = this.props;
     const { open } = this.state;
-    console.log(this.props);
 
     return (
       <div>
@@ -61,11 +54,11 @@ class LolboxModal extends Component {
               <Grid>
                 <Grid.Row>
                   <Grid.Column width={8}>
-                    <Image fluid src={displayUrl} />
+                    <Image fluid src={url} />
                   </Grid.Column>
                   <Grid.Column width={8}>
                     <Modal.Description>
-                      <p>{displayAlt}</p>
+                      <p>{title}</p>
                       <form
                         className="ui form"
                         onSubmit={handleSubmit(this.onSubmit)}

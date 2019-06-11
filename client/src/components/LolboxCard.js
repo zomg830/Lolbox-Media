@@ -62,6 +62,7 @@ class LolboxCard extends React.Component {
   }
 
   renderModal(title, url) {
+    console.log(title, url);
     return (
       <LolboxModal
         trigger={this.renderCommentButton()}

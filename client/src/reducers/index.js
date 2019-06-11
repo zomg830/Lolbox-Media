@@ -3,6 +3,7 @@ import {
   reducer as formReducer,
   actionTypes as formActionTypes
 } from "redux-form";
+
 import authReducer from "./authReducer";
 import lolboxReducer from "./lolboxReducer";
 
