@@ -8,7 +8,6 @@ export default class BasicMenu extends Component {
   state = { activeItem: "" };
 
   componentWillMount() {
-    console.log(history.location.pathname);
     this.setState({ activeItem: history.location.pathname });
   }
 
