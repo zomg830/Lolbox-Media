@@ -5,10 +5,7 @@
   "main": "./server/server.js",
   "scripts": {
     "start": "cd ./server && npm run start",
-    "seed": "node scripts/seedDB.js",
-    "install": "cd ./server && npm install",
-    "build": "cd ./server && npm run build",
-    "heroku-postbuild": "cd ./server && npm run build"
+    "install": "cd ./server && npm install"
   },
   "author": "",
   "license": "ISC"
