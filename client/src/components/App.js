@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 
 import Landing from "../pages/Landing";
@@ -9,7 +9,7 @@ import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import history from "../history";
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <div>

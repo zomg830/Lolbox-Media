@@ -23,7 +23,7 @@ const Landing = () => {
             </div>
             <div className="six wide right floated column">
               <img
-                src="https://dummyimage.com/640x360/fff/aaa"
+                src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjY0NTI2fQ"
                 className="ui large bordered rounded image"
                 alt="lolbox logo"
               />
