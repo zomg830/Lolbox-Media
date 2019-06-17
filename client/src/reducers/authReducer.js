@@ -18,6 +18,7 @@ export default function(state = INITIAL_STATE, action) {
         ...state,
         userId: action.payload.userId,
         email: action.payload.email,
+        username: action.payload.username,
         isLoggedIn: !action.payload ? false : true
       };
     default:

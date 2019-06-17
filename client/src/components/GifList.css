@@ -8,10 +8,6 @@ img {
   cursor: pointer;
 }
 
-.placeholder {
-  background-color: #9a00a8;
-}
-
 .check-icon {
   position: absolute;
   top: 2%;
@@ -104,31 +100,4 @@ img {
 
 .pusher > .segment {
   flex: 1;
-}
-
-.overlay {
-  position: absolute;
-  background-color: #6435c9;
-  overflow: hidden;
-  width: 40%;
-  left: 30%;
-  transition: 0.5s ease;
-  border-radius: 8px;
-}
-
-.overlay-container:hover .overlay {
-  bottom: 5%;
-  height: 20%;
-}
-
-.overlay-text {
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: auto;
-  padding: auto;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }

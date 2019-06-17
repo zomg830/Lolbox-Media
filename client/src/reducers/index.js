@@ -6,9 +6,8 @@ import {
 
 import authReducer from "./authReducer";
 import lolboxReducer from "./lolboxReducer";
+import commentReducer from "./commentReducer";
 
-// Removes issue of comment values carrying over
-// between two different lolbox card modal comments
 const removeUnregisteredFormFieldValue = (state, action) => {
   if (action.type !== formActionTypes.UNREGISTER_FIELD) return state;
 
@@ -21,6 +20,7 @@ const removeUnregisteredFormFieldValue = (state, action) => {
 export default combineReducers({
   auth: authReducer,
   lolbox: lolboxReducer,
+  comment: commentReducer,
   form: formReducer.plugin({
     comment: removeUnregisteredFormFieldValue
   })

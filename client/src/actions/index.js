@@ -5,7 +5,8 @@ import {
   AUTH_USER,
   AUTH_ERROR,
   SET_ID,
-  POST_COMMENT
+  POST_COMMENT,
+  FETCH_COMMENTS
 } from "./types";
 import API from "../api/lolboxAPI";
 import history from "../history";
@@ -36,7 +37,7 @@ export const signup = formProps => async dispatch => {
     dispatch({ type: AUTH_USER, payload: response.data.token });
     localStorage.setItem("token", response.data.token);
   } catch (e) {
-    dispatch({ type: AUTH_ERROR, payload: "Email in use" });
+    dispatch({ type: AUTH_ERROR, payload: "Email or username already in use" });
   }
 };
 
@@ -72,8 +73,23 @@ export const destroyId = () => async dispatch => {
   window.location.reload();
 };
 
-export const postComment = (userId, id, comment) => async dispatch => {
-  const response = await API.postComment(userId, id, comment);
+export const postComment = (
+  userId,
+  id,
+  username,
+  comment
+) => async dispatch => {
+  const response = await API.postComment(userId, id, username, comment);
 
-  dispatch({ type: POST_COMMENT, payload: response.data });
+  dispatch({ type: POST_COMMENT, payload: JSON.parse(response.config.data) });
+};
+
+export const fetchComments = id => async dispatch => {
+  const response = await API.fetchComments(id);
+
+  dispatch({ type: FETCH_COMMENTS, payload: response.data });
+};
+
+export const clearComments = () => async dispatch => {
+  dispatch({ type: FETCH_COMMENTS, payload: "" });
 };

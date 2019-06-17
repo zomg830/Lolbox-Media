@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchLolbox, deleteLolboxItem } from "../actions";
+import { fetchLolbox, deleteLolboxItem, fetchComments } from "../actions";
 import LolboxModal from "./LolboxModal";
 
 class LolboxCard extends React.Component {
@@ -10,7 +10,6 @@ class LolboxCard extends React.Component {
 
     this.state = {
       loadingState: "ui active centered inline loader",
-      visible: false,
       commentClass: "big comment outline icon comment-icon"
     };
 
@@ -22,7 +21,6 @@ class LolboxCard extends React.Component {
   }
 
   handleDelete = (userId, id) => {
-    this.setState({ visible: false });
     this.props.deleteLolboxItem(userId, id);
   };
 
@@ -56,18 +54,21 @@ class LolboxCard extends React.Component {
           this.setState({
             commentClass: "big violet comment icon comment-icon"
           });
+          this.props.fetchComments(this.props.item.id);
         }}
       />
     );
   }
 
-  renderModal(title, url) {
-    console.log(title, url);
+  renderModal(title, url, button) {
     return (
       <LolboxModal
-        trigger={this.renderCommentButton()}
+        trigger={button}
         title={title}
         url={url}
+        userId={this.props.userId}
+        id={this.props.item.id}
+        username={this.props.username}
       />
     );
   }
@@ -89,7 +90,7 @@ class LolboxCard extends React.Component {
         />
         {!this.state.loadingState ? this.renderDeleteButton() : null}
         {!this.state.loadingState
-          ? this.renderModal(displayAlt, displayUrl)
+          ? this.renderModal(displayAlt, displayUrl, this.renderCommentButton())
           : null}
       </div>
     );
@@ -106,5 +107,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchLolbox, deleteLolboxItem }
+  { fetchLolbox, deleteLolboxItem, fetchComments }
 )(LolboxCard);

@@ -55,11 +55,20 @@ const Signup = props => {
     <form className="ui form" onSubmit={handleSubmit(onSubmit)}>
       <div className="field">
         <Field
+          name="username"
+          type="text"
+          component={renderField}
+          label="Username"
+          validate={required}
+        />
+      </div>
+      <div className="field">
+        <Field
           name="email"
           type="email"
           component={renderField}
           label="Email"
-          validate={email}
+          validate={[required, email]}
         />
       </div>
       <div className="field">
