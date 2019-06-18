@@ -1,11 +1,11 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const enforce = require("express-sslify");
-const compression = require("compression");
-const morgan = require("morgan");
-const cors = require("cors");
-const routes = require("./routes");
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const enforce = require('express-sslify');
+const compression = require('compression');
+const morgan = require('morgan');
+const cors = require('cors');
+const routes = require('./routes');
 
 const app = express();
 
@@ -23,19 +23,19 @@ const dbOptions = {
   reconnectTries: Number.MAX_VALUE,
   reconnectInterval: 500,
   connectTimeoutMS: 10000,
-  dbName: "lolbox"
+  dbName: 'lolbox'
 };
 
 const url = `mongodb://${MONGODB_HOSTNAME}:${MONGODB_PORT}/${MONGODB_DB}?authSource=admin`;
 
-app.use(morgan("combined"));
+app.use(morgan('combined'));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(compression());
-if (NODE_ENV === "production") {
+if (NODE_ENV === 'production') {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
-  app.use(express.static("client/build"));
+  app.use(express.static(path.join(__dirname, '/../client/build')));
 }
 
 app.use(routes);
