@@ -1,13 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+const app = express();
 const mongoose = require('mongoose');
 const enforce = require('express-sslify');
 const compression = require('compression');
 const morgan = require('morgan');
 const cors = require('cors');
-const routes = require('./routes');
+const path = require('path');
 
-const app = express();
+const routes = require('./routes');
 
 const {
   PORT = 3001,
