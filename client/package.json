@@ -1,6 +1,7 @@
 {
-  "name": "pics",
-  "version": "0.1.0",
+  "name": "lolbox-media",
+  "version": "1.0.0",
+  "description": "Lolbox media react server",
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
