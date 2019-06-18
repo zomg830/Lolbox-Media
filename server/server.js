@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(compression());
 if (NODE_ENV === 'production') {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
-  app.use(express.static(path.join(__dirname, '/../client/build')));
+  app.use(express.static(path.join(__dirname + '/../client/build')));
 }
 
 app.use(routes);
