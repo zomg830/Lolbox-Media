@@ -8,12 +8,11 @@ services:
       - 3001:3001
     volumes:
       - ./server:/usr/src/app/server
-      - node_modules:/usr/src/app/server/node_modules
     networks:
       - app-network
     env_file:
       - ./server/.env
-    command: /usr/src/app/server/node_modules/.bin/nodemon server.js
+    command: node server.js
 
   client:
     build: ./client
@@ -22,7 +21,6 @@ services:
       - 3000:3000
     volumes:
       - ./client:/usr/src/app/client
-      - node_modules:/usr/src/app/client/node_modules
     links:
       - server
     networks:
@@ -42,7 +40,6 @@ services:
 
 volumes:
   dbdata:
-  node_modules:
 
 networks:
   app-network:

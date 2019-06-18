@@ -73,7 +73,7 @@ class LolboxModal extends Component {
 
   renderComments = id => {
     const comments = this.props.comments.map(el => (
-      <div className="item" key={`${el.userId}/${id}`}>
+      <div className="item" key={`${el.userId}/${id}/${el.comment_id}`}>
         <div className="header">{el.username}</div>
         {el.comment}
       </div>

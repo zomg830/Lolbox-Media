@@ -1,4 +1,5 @@
 const db = require("../models");
+const nanoid = require("nanoid");
 
 module.exports = {
   findAll: function(req, res) {
@@ -15,7 +16,8 @@ module.exports = {
           comments: {
             userId: req.params.userId,
             comment: req.body.comment,
-            username: req.body.username
+            username: req.body.username,
+            comment_id: nanoid(10)
           }
         }
       },
@@ -27,6 +29,6 @@ module.exports = {
   fetchcomments: function(req, res) {
     db.Comment.findById(req.params.id)
       .then(dbModel => res.json(dbModel.comments))
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(422).send({ error: "No comments found" }));
   }
 };

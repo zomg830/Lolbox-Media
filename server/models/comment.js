@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
   _id: String,
+  comment_id: String,
   id: String,
   comments: Array
 });

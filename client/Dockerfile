@@ -6,11 +6,9 @@ WORKDIR /home/node/app/client
 
 COPY package*.json ./
 
-USER node
-
 RUN npm install
 
-RUN npm prune --no-production
+RUN npm prune
 
 COPY --chown=node:node . .
 

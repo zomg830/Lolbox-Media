@@ -1,7 +1,5 @@
 FROM node
 
-ENV DOCKER_DEPLOYED true
-
 RUN mkdir -p /home/node/app/server/node_modules && chown -R node:node /home/node/app/server
 
 WORKDIR /home/node/app/server
